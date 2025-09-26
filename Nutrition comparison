@@ -1,0 +1,48 @@
+# Food data: key nutrients per 100g (or per serving, as long as it's consistent)
+food1_name = "Apple (100g)"
+food1_data = {
+    "Calories": 52,
+    "Protein (g)": 0.3,
+    "Fat (g)": 0.2,
+    "Carbohydrates (g)": 13.8,
+    "Fiber (g)": 2.4,
+    "Sugar (g)": 10.4
+}
+
+food2_name = "Banana (100g)"
+food2_data = {
+    "Calories": 89,
+    "Protein (g)": 1.1,
+    "Fat (g)": 0.3,
+    "Carbohydrates (g)": 22.8,
+    "Fiber (g)": 2.6,
+    "Sugar (g)": 12.2
+}
+
+def compare_nutrition(food1, food2, food1_name, food2_name):
+    """Compares the key nutrients of two food items."""
+    print(f"--- Nutrition Comparison: {food1_name} vs. {food2_name} (per unit) ---")
+
+    # Get a list of all nutrients to compare
+    all_nutrients = set(food1.keys()) | set(food2.keys())
+
+    for nutrient in sorted(all_nutrients):
+        val1 = food1.get(nutrient, 0)
+        val2 = food2.get(nutrient, 0)
+
+        # Determine which food has more of the nutrient
+        if val1 > val2:
+            comparison_result = f"{food1_name} has more"
+        elif val2 > val1:
+            comparison_result = f"{food2_name} has more"
+        else:
+            comparison_result = "They are equal"
+
+        # Format the output line
+        print(f"\n{nutrient}:")
+        print(f"  {food1_name}: {val1}")
+        print(f"  {food2_name}: {val2}")
+        print(f"  -> {comparison_result}")
+
+# Run the comparison
+compare_nutrition(food1_data, food2_data, food1_name, food2_name)
